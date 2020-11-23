@@ -18,12 +18,17 @@ const {
   internQuestions,
 } = require("./lib/questions");
 
-let employeeStorage = [];
+let employees = [];
 let counter = 0;
 function managerPrompt() {
   inquirer.prompt(managerQuestions).then((answers) => {
-    console.log("manager done", answers);
-    // push manager to array
+    const manager = new Manager(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.officeNumber
+    );
+    employees.push(manager);
     rolePrompt(counter);
   });
 }
@@ -50,7 +55,7 @@ function employeePrompts(role) {
           answers.email,
           answers.gitHub
         );
-        employeeStorage.push(engineer);
+        employees.push(engineer);
       } else if (role === "Intern") {
         const intern = new Intern(
           answers.name,
@@ -58,15 +63,21 @@ function employeePrompts(role) {
           answers.email,
           answers.school
         );
-        employeeStorage.push(intern);
+        employees.push(intern);
       }
-      if (answers.restart === "Yes") {
+      if (answers.restart === "Yes" && counter <= 7) {
         rolePrompt(counter);
-      } else {
-        console.log("your done");
-        console.log("employeeStorage", employeeStorage);
+      } else if (answers.restart === "Yes" && counter > 7) {
+        console.log("Sorry, Max employee number!");
+        console.log("employeeStorage", employees);
         console.log("counter", counter);
+        fs.writeFileSync(outputPath, render(employees));
         // render the html with the instances
+      } else {
+        console.log("Finished");
+        console.log("employeeStorage", employees);
+        console.log("counter", counter);
+        fs.writeFileSync(outputPath, render(employees));
       }
     });
 }
@@ -96,4 +107,4 @@ managerPrompt();
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-module.exports = rolePrompt;
+module.exports = employees;
