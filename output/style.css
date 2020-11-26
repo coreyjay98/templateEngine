@@ -1,0 +1,24 @@
+.card {
+  min-width: auto;
+  min-width: 280px;
+  max-width: 280px;
+  margin-bottom: 40px;
+}
+
+.card-header {
+  background-color: skyblue;
+}
+.managerCard {
+  max-width: 300px !important;
+  margin-bottom: 30px;
+}
+.managerHeader {
+  background-color: orangered;
+}
+
+.team-area {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}

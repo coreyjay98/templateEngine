@@ -34,7 +34,7 @@ function managerPrompt() {
 }
 
 function rolePrompt(num) {
-  if (num <= 7) {
+  if (num <= 5) {
     inquirer.prompt(roleQuestion).then((answers) => {
       employeePrompts(answers.jobRole);
     });
@@ -65,9 +65,9 @@ function employeePrompts(role) {
         );
         employees.push(intern);
       }
-      if (answers.restart === "Yes" && counter <= 7) {
+      if (answers.restart === "Yes" && counter <= 5) {
         rolePrompt(counter);
-      } else if (answers.restart === "Yes" && counter > 7) {
+      } else if (answers.restart === "Yes" && counter > 5) {
         console.log("Sorry, Max employee number!");
         console.log("employeeStorage", employees);
         console.log("counter", counter);
@@ -83,7 +83,6 @@ function employeePrompts(role) {
 }
 
 managerPrompt();
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
