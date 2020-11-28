@@ -34,7 +34,7 @@ function managerPrompt() {
 }
 
 function rolePrompt(num) {
-  if (num <= 5) {
+  if (num <= 4) {
     inquirer.prompt(roleQuestion).then((answers) => {
       employeePrompts(answers.jobRole);
     });
