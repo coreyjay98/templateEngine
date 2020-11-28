@@ -33,14 +33,10 @@ function managerPrompt() {
   });
 }
 
-function rolePrompt(num) {
-  if (num <= 4) {
-    inquirer.prompt(roleQuestion).then((answers) => {
-      employeePrompts(answers.jobRole);
-    });
-  } else {
-    console.log("Sorry, Max employee number!");
-  }
+function rolePrompt() {
+  inquirer.prompt(roleQuestion).then((answers) => {
+    employeePrompts(answers.jobRole);
+  });
 }
 
 function employeePrompts(role) {
@@ -65,9 +61,9 @@ function employeePrompts(role) {
         );
         employees.push(intern);
       }
-      if (answers.restart === "Yes" && counter <= 5) {
+      if (answers.restart === "Yes" && counter <= 4) {
         rolePrompt(counter);
-      } else if (answers.restart === "Yes" && counter > 5) {
+      } else if (answers.restart === "Yes" && counter >= 5) {
         console.log("Sorry, Max employee number!");
         console.log("employeeStorage", employees);
         console.log("counter", counter);

@@ -8,12 +8,17 @@
 .card-header {
   background-color: skyblue;
 }
+.internHeader {
+  background-color: powderblue;
+}
 .managerCard {
-  max-width: 300px !important;
+  min-width: 280px;
+  max-width: 280px;
+  max-height: 310px;
   margin-bottom: 30px;
 }
 .managerHeader {
-  background-color: orangered;
+  background-color: steelblue;
 }
 
 .team-area {
